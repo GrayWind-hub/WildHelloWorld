@@ -1,6 +1,9 @@
 package sgo.wild;
 
 
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -16,10 +19,14 @@ public class HelloService {
         id = new Date().getTime();
     }
 
+//    @Inject
+//    HttpServletRequest request;
+
     @GET
     @Path("/text")
     public String getHello ()
     {
+//        System.out.println("SERVLERREQUEST:"+request);
         return "hello world! ("+id+")";
     }
     @GET
@@ -35,7 +42,7 @@ public class HelloService {
     @Produces(MediaType.APPLICATION_XML)
     public SimpleProperty getPropertyXML ()
     {
-        SimpleProperty p = new SimpleProperty("key","value");
+        SimpleProperty p = new SimpleProperty("id",""+id);
         return p;
     }
 }
